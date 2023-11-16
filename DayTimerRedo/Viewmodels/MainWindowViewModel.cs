@@ -20,6 +20,17 @@ namespace DayTimerRedo.Viewmodels
             }
         }
 
+        private string _timeEventTitle = "Until Lunch";
+        public string TimeEventTitle
+        {
+            get => _timeEventTitle;
+            set
+            {
+                _timeEventTitle = $"Until {value}";
+                NotifyPropertyChanged(nameof(TimeEventTitle));
+            }
+        }
+
         public MainWindowViewModel()
         {
             MainDayTimer mainDayTimer = new MainDayTimer();

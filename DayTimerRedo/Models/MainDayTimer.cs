@@ -18,6 +18,9 @@ namespace DayTimerRedo.Models
 
         public async void BeginLoop()
         {
+            NextTime = TimeFactory.CreateMajorTimeEvent("Lunch", 12, 0);
+            ViewModel.TimeEventTitle = NextTime.Name;
+
             int period = 1000;
             Func<Task> loopingUpdate = Update;
 

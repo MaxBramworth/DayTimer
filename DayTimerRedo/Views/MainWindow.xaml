@@ -12,6 +12,6 @@
     </Window.DataContext>
     <Grid>
         <TextBlock HorizontalAlignment="Center" Height="83" Margin="0,124,0,0" TextWrapping="Wrap" Text="{Binding TimeRemainingFormatted}" VerticalAlignment="Top" Width="364" FontSize="70px" TextAlignment="Center"/>
-        <TextBlock HorizontalAlignment="Center" Height="42" Margin="0,217,0,0" TextWrapping="Wrap" Text="Until Lunch" VerticalAlignment="Top" Width="292" FontSize="25px" TextAlignment="Center"/>
+        <TextBlock HorizontalAlignment="Center" Height="42" Margin="0,217,0,0" TextWrapping="Wrap" Text="{Binding TimeEventTitle}" VerticalAlignment="Top" Width="292" FontSize="25px" TextAlignment="Center"/>
     </Grid>
 </Window>
