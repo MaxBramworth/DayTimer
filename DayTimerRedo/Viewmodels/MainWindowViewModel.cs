@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DayTimerRedo.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,6 +18,13 @@ namespace DayTimerRedo.Viewmodels
                 _timeRemainingFormatted = value;
                 NotifyPropertyChanged(nameof(TimeRemainingFormatted));
             }
+        }
+
+        public MainWindowViewModel()
+        {
+            MainDayTimer mainDayTimer = new MainDayTimer();
+            mainDayTimer.ViewModel = this;
+            mainDayTimer.BeginLoop();
         }
 
         public void FormatTimeRemaining(TimeSpan duration)
