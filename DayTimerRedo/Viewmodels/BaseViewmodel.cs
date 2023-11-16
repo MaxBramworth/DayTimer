@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DayTimerRedo.Viewmodels
 {
-    internal abstract class BaseViewmodel : INotifyPropertyChanged
+    public abstract class BaseViewmodel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler? PropertyChanged;
         public void NotifyPropertyChanged(string propertyName)
