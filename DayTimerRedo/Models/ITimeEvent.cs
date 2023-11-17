@@ -6,19 +6,19 @@ using System.Threading.Tasks;
 
 namespace DayTimerRedo.Models
 {
-    public interface ITimeOfSignificance
+    public interface ITimeEvent
     {
         DateTime Time { get; }
         string Name { get; }
     }
 
-    public class MajorTime : ITimeOfSignificance
+    public class MajorTimeEvent : ITimeEvent
     {
         public DateTime Time { get; }
 
         public string Name { get; }
 
-        public MajorTime(DateTime time, string name)
+        public MajorTimeEvent(DateTime time, string name)
         {
             Time = time;
             Name = name;

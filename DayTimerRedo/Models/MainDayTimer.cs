@@ -12,7 +12,7 @@ namespace DayTimerRedo.Models
     {
         public MainWindowViewModel ViewModel { get; set; }
         
-        ITimeOfSignificance NextTime;
+        ITimeEvent NextTime;
 
         public TimeSpan TimeRemaining => NextTime.Time - DateTime.Now;
 
