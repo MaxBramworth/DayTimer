@@ -28,6 +28,7 @@ namespace DayTimerRedo.Tests
                 DayOfWeek.Saturday,
             };
             DayOfWeek[] actual = StringParser.StringToDayOfWeekArray("Mon NOPE Tues Sat");
+            CollectionAssert.AreEqual(expected, actual);
         }
     }
 }

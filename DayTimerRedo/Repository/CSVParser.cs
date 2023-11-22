@@ -34,7 +34,7 @@ namespace DayTimerRedo.Repository
             parser.CommentTokens = new string[] { "/" };
 
             List<ITimeEvent> events = new();
-            string[] fields = parser.ReadFields();
+            string[]? fields = parser.ReadFields();
 
             while (fields != null)
             {

@@ -23,8 +23,8 @@ namespace DayTimerRedo.Models
 
         public static DayOfWeek[] StringToDayOfWeekArray(string value)
         {
-            List<DayOfWeek> output = new List<DayOfWeek>();
-            string[] days = value.Split(":");
+            List<DayOfWeek> output = new();
+            string[] days = value.Split(" ");
 
             foreach (var day in days)
             {
@@ -50,6 +50,8 @@ namespace DayTimerRedo.Models
                         break;
                     case "Sun":
                         output.Add(DayOfWeek.Sunday);
+                        break;
+                    default:
                         break;
                 }
             }
