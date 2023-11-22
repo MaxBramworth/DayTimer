@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace DayTimerRedo.Models
+﻿namespace DayTimerRedo.Models
 {
     public class TimeFactory
     {

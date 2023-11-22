@@ -1,10 +1,5 @@
 ﻿using DayTimerRedo.Models;
 using DayTimerRedo.Repository;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DayTimerRedo.Tests
 {
@@ -12,48 +7,16 @@ namespace DayTimerRedo.Tests
     public class RepositoryTests
     {
         [TestMethod]
-        public void GivenAnInvalidFilePathway_WhenPathwaySet_DoesNotSet()
+        public void GivenADatabase_WhenConstructorInvoked_AutomaticallyReadsTheDatabase()
         {
-            CSVParser parser = new();
+            var parser = new CSVParser("DataBase\\TimeEvents.csv");
+            var repo = new TimeEventRepository(parser);
 
-            parser.Pathway = "breaks";
+            ITimeEvent[] expected = parser.ReadAllTimeEvents();
 
-            Assert.AreNotEqual("breaks", parser.Pathway);
+            Assert.AreEqual(expected.Length, repo.TimeEvents.Length);
+            Assert.AreEqual(expected[0].Name, repo.TimeEvents[0].Name);
+            Assert.AreEqual(expected[1].Name, repo.TimeEvents[1].Name);
         }
-
-        [TestMethod]
-        public void GivenAValidFilePathway_WhenPathwaySet_SetsThePathway()
-        {
-            CSVParser parser = new();
-
-            string expectedPathway = "DataBase\\TimeEvents.csv";
-            parser.Pathway = expectedPathway;
-
-            Assert.IsTrue(File.Exists(expectedPathway));
-            Assert.AreEqual(expectedPathway, parser.Pathway);
-        }
-
-        [TestMethod]
-        public void GivenAValidFilePathwayWithInvalidType_WhenPathwaySet_DoesNotSet()
-        {
-            CSVParser parser = new();
-
-            string expectedPathway = "DataBase\\TimeEvents.json";
-            parser.Pathway = expectedPathway;
-
-            Assert.IsTrue(File.Exists(expectedPathway));
-            Assert.AreNotEqual(expectedPathway, parser.Pathway);
-        }
-
-        //[TestMethod]
-        //public void GivenAFile_WhenReadAllTimeEventsInvoked_ReturnsAllTimeEvents()
-        //{
-        //    CSVParser parser = new();
-        //    parser.Pathway = "DataBase\\TimeEvents.csv";
-
-        //    ITimeEvent[] timeEvents = parser.ReadAllTimeEvents();
-
-        //    Assert.AreEqual(3, timeEvents.Length);
-        //}
     }
 }

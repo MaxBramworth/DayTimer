@@ -3,9 +3,6 @@ using Microsoft.VisualBasic.FileIO;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DayTimerRedo.Repository
 {
@@ -22,6 +19,14 @@ namespace DayTimerRedo.Repository
                 }
             } 
         }
+
+        public CSVParser() { }
+
+        public CSVParser(string pathway)
+        {
+            Pathway = pathway;
+        }
+
         public ITimeEvent[] ReadAllTimeEvents()
         {
             TextFieldParser parser = new(Pathway);
@@ -33,7 +38,8 @@ namespace DayTimerRedo.Repository
 
             while (fields != null)
             {
-
+                events.Add(TimeFactory.CreateMajorTimeEvent(fields[0], fields[1], fields[2]));
+                fields = parser.ReadFields();
             }
 
             return events.ToArray();
