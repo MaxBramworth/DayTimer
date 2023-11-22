@@ -10,10 +10,8 @@ namespace DayTimerRedo.Models
             MajorTimeEvent output = new();
 
             output.Name = name;
-
             output.Time = StringParser.StringToTimeOnly(time);
-
-            string[] days = daysofweek.Split(' ');
+            output.Days = StringParser.StringToDayOfWeekArray(daysofweek);
 
             return output;
         }
