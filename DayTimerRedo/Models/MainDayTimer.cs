@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.InteropServices;
 using DayTimerRedo.Viewmodels;
+using DayTimerRedo.Repository;
 
 namespace DayTimerRedo.Models
 {
@@ -12,14 +13,20 @@ namespace DayTimerRedo.Models
     {
         public MainWindowViewModel ViewModel { get; set; }
         
-        ITimeEvent NextTime;
+        ITimeEvent? NextTime;
 
         public TimeSpan TimeRemaining => NextTime.Time - TimeOnly.FromDateTime(DateTime.Now);
 
+        public TimeEventRepository Repository;
+
+        public MainDayTimer()
+        {
+            Repository = new(new CSVParser("DataBase\\TimeEvents.csv"));
+        }
+
         public async void BeginLoop()
         {
-            NextTime = TimeFactory.CreateMajorTimeEvent("Lunch", "4:30:0", "Mon");
-            ViewModel.TimeEventTitle = NextTime.Name;
+            NextTime = GetNextTimeEvent(Repository.TimeEvents, TimeOnly.FromDateTime(DateTime.Now));
 
             int period = 1000;
             Func<Task> loopingUpdate = Update;
@@ -34,6 +41,21 @@ namespace DayTimerRedo.Models
         private async Task Update()
         {
             ViewModel.FormatTimeRemaining(TimeRemaining);
+        }
+
+        public ITimeEvent? GetNextTimeEvent(ITimeEvent[] timeEvents, TimeOnly currentTime)
+        {
+            timeEvents = timeEvents.OrderBy(t => t.Time).ToArray();
+
+            foreach (ITimeEvent timeEvent in timeEvents)
+            {
+                if (timeEvent.Time > currentTime)
+                {
+                    return timeEvent;
+                }
+            }
+
+            return null;
         }
     }
 }
