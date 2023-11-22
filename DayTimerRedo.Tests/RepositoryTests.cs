@@ -25,7 +25,7 @@ namespace DayTimerRedo.Tests
         {
             CSVParser parser = new();
 
-            string expectedPathway = "../ITimeEventParser.cs";
+            string expectedPathway = "DataBase\\TimeEvents.csv";
             parser.Pathway = expectedPathway;
 
             Assert.IsTrue(File.Exists(expectedPathway));
@@ -37,9 +37,11 @@ namespace DayTimerRedo.Tests
         {
             CSVParser parser = new();
 
-            parser.Pathway = "../DataBase/TimeEvents.json";
+            string expectedPathway = "DataBase\\TimeEvents.json";
+            parser.Pathway = expectedPathway;
 
-            Assert.AreNotEqual("../DataBase/TimeEvents.json", parser.Pathway);
+            Assert.IsTrue(File.Exists(expectedPathway));
+            Assert.AreNotEqual(expectedPathway, parser.Pathway);
         }
     }
 }

@@ -15,7 +15,7 @@ namespace DayTimerRedo.Repository
             get => _pathway; 
             set 
             {
-                if (File.Exists(value)) //  && value.Substring(Math.Max(value.Length-3, 0)) == "csv"
+                if (File.Exists(value) && value.Substring(Math.Max(value.Length-3, 0)) == "csv")
                 {
                     _pathway = value; 
                 }
