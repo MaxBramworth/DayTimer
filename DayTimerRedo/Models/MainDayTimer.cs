@@ -14,11 +14,11 @@ namespace DayTimerRedo.Models
         
         ITimeEvent NextTime;
 
-        public TimeSpan TimeRemaining => NextTime.Time - DateTime.Now;
+        public TimeSpan TimeRemaining => NextTime.Time - TimeOnly.FromDateTime(DateTime.Now);
 
         public async void BeginLoop()
         {
-            NextTime = TimeFactory.CreateMajorTimeEvent("Lunch", 12, 0);
+            NextTime = TimeFactory.CreateMajorTimeEvent("Lunch", "4:30:0", "Mon");
             ViewModel.TimeEventTitle = NextTime.Name;
 
             int period = 1000;

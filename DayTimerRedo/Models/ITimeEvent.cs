@@ -8,20 +8,26 @@ namespace DayTimerRedo.Models
 {
     public interface ITimeEvent
     {
-        DateTime Time { get; }
-        string Name { get; }
+        TimeOnly Time { get; set; }
+        string Name { get; set; }
+        DayOfWeek[] Days { get; set; }
     }
 
     public class MajorTimeEvent : ITimeEvent
     {
-        public DateTime Time { get; }
+        public TimeOnly Time { get; set; }
 
-        public string Name { get; }
+        public string Name { get; set; }
 
-        public MajorTimeEvent(DateTime time, string name)
+        public DayOfWeek[] Days { get; set; }
+
+        public MajorTimeEvent(TimeOnly time, string name, DayOfWeek[] days)
         {
             Time = time;
             Name = name;
+            Days = days;
         }
+
+        public MajorTimeEvent() { }
     }
 }

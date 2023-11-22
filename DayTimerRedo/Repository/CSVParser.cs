@@ -1,4 +1,5 @@
 ﻿using DayTimerRedo.Models;
+using Microsoft.VisualBasic.FileIO;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -23,12 +24,19 @@ namespace DayTimerRedo.Repository
         }
         public ITimeEvent[] ReadAllTimeEvents()
         {
-            throw new NotImplementedException();
-        }
+            TextFieldParser parser = new(Pathway);
+            parser.SetDelimiters(",");
+            parser.CommentTokens = new string[] { "/" };
 
-        public ITimeEvent[] ReadAllTimeEvents(Func<ITimeEvent, bool> condition)
-        {
-            throw new NotImplementedException();
+            List<ITimeEvent> events = new();
+            string[] fields = parser.ReadFields();
+
+            while (fields != null)
+            {
+
+            }
+
+            return events.ToArray();
         }
     }
 }

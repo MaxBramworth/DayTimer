@@ -13,7 +13,5 @@ namespace DayTimerRedo.Repository
         string Pathway { get; set; }
 
         ITimeEvent[] ReadAllTimeEvents();
-
-        ITimeEvent[] ReadAllTimeEvents(Func<ITimeEvent, bool> condition);
     }
 }

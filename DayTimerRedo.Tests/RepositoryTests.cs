@@ -1,4 +1,5 @@
-﻿using DayTimerRedo.Repository;
+﻿using DayTimerRedo.Models;
+using DayTimerRedo.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,5 +44,16 @@ namespace DayTimerRedo.Tests
             Assert.IsTrue(File.Exists(expectedPathway));
             Assert.AreNotEqual(expectedPathway, parser.Pathway);
         }
+
+        //[TestMethod]
+        //public void GivenAFile_WhenReadAllTimeEventsInvoked_ReturnsAllTimeEvents()
+        //{
+        //    CSVParser parser = new();
+        //    parser.Pathway = "DataBase\\TimeEvents.csv";
+
+        //    ITimeEvent[] timeEvents = parser.ReadAllTimeEvents();
+
+        //    Assert.AreEqual(3, timeEvents.Length);
+        //}
     }
 }
