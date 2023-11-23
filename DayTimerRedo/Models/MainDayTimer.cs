@@ -26,7 +26,7 @@ namespace DayTimerRedo.Models
 
         public async void BeginLoop()
         {
-            NextTime = GetNextTimeEvent(Repository.TimeEvents, TimeOnly.FromDateTime(DateTime.Now));
+            NextTime = GetNextTimeEvent(Repository.TimeEvents, DateTime.Now);
 
             int period = 1000;
             Func<Task> loopingUpdate = Update;
@@ -43,13 +43,13 @@ namespace DayTimerRedo.Models
             ViewModel.FormatTimeRemaining(TimeRemaining);
         }
 
-        public ITimeEvent? GetNextTimeEvent(ITimeEvent[] timeEvents, TimeOnly currentTime)
+        public ITimeEvent? GetNextTimeEvent(ITimeEvent[] timeEvents, DateTime currentTime)
         {
-            timeEvents = timeEvents.OrderBy(t => t.Time).ToArray();
+            timeEvents = timeEvents.Where(t => t.Days.Contains(currentTime.DayOfWeek)).OrderBy(t => t.Time).ToArray();
 
             foreach (ITimeEvent timeEvent in timeEvents)
             {
-                if (timeEvent.Time > currentTime)
+                if (timeEvent.Time > TimeOnly.FromDateTime(currentTime))
                 {
                     return timeEvent;
                 }
