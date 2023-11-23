@@ -7,9 +7,9 @@ using Microsoft.Toolkit.Uwp.Notifications;
 
 namespace DayTimerRedo.Models
 {
-    public class NotificationService
+    public static class NotificationService
     {
-        private static void ShowNotification(string message)
+        public static void ShowMessage(string message)
         {
             new ToastContentBuilder().AddText(message).Show();
         }
