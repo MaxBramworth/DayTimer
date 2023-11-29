@@ -27,7 +27,7 @@ namespace DayTimerRedo.Viewmodels
             get => _timeEventTitle;
             set
             {
-                _timeEventTitle = $"Until {value}";
+                _timeEventTitle = value;
                 NotifyPropertyChanged(nameof(TimeEventTitle));
             }
         }

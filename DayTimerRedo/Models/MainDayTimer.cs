@@ -41,7 +41,7 @@ namespace DayTimerRedo.Models
 
         private async Task Update()
         {
-            if (_timeRemaining > _previousTimeRemaining) // an overflow has happened (the event is now in the past)
+            if (TimeOnly.FromDateTime(DateTime.Now) > _nextTime.Time) // an overflow has happened (the event is now in the past)
             {
                 NotificationService.ShowMessage(_nextTime.Name);
                 GetNextTimeEvent(Repository.TimeEvents, DateTime.Now);
@@ -58,9 +58,11 @@ namespace DayTimerRedo.Models
             {
                 if (timeEvent.Time > TimeOnly.FromDateTime(currentTime))
                 {
+                    ViewModel.TimeEventTitle = $"Until {timeEvent.Name}";
                     return timeEvent;
                 }
             }
+            
 
             return null;
         }

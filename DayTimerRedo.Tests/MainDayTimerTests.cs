@@ -21,7 +21,7 @@ namespace DayTimerRedo.Tests
                 new MajorTimeEvent(new(2, 30), "a", allDays),
                 new MajorTimeEvent(new(5, 40), "b", allDays)
             };
-            MainDayTimer mdt = new();
+            MainDayTimer mdt = new() { ViewModel = new() };
 
             ITimeEvent? result = mdt.GetNextTimeEvent(inputTimeEvents, new(2023, 11, 23, 3, 42, 30));
 
