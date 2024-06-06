@@ -44,7 +44,7 @@ namespace DayTimerRedo.Models
             if (TimeOnly.FromDateTime(DateTime.Now) > _nextTime.Time) // an overflow has happened (the event is now in the past)
             {
                 NotificationService.ShowMessage(_nextTime.Name);
-                GetNextTimeEvent(Repository.TimeEvents, DateTime.Now);
+                _nextTime = GetNextTimeEvent(Repository.TimeEvents, DateTime.Now);
             }
             _previousTimeRemaining = _timeRemaining;
             ViewModel.FormatTimeRemaining(_timeRemaining);
