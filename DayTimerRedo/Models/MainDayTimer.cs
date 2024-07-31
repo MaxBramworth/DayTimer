@@ -46,8 +46,17 @@ namespace DayTimerRedo.Models
                 NotificationService.ShowMessage(_nextTime.Name);
                 _nextTime = GetNextTimeEvent(Repository.TimeEvents, DateTime.Now);
             }
-            _previousTimeRemaining = _timeRemaining;
-            ViewModel.FormatTimeRemaining(_timeRemaining);
+
+            if (_nextTime != null)
+            {
+                _previousTimeRemaining = _timeRemaining;
+                ViewModel.FormatTimeRemaining(_timeRemaining);
+            }
+            else
+            {
+                ViewModel.DisplayNoEventsRemaining();
+            }
+
         }
 
         public ITimeEvent? GetNextTimeEvent(ITimeEvent[] timeEvents, DateTime currentTime)
@@ -62,7 +71,6 @@ namespace DayTimerRedo.Models
                     return timeEvent;
                 }
             }
-            
 
             return null;
         }

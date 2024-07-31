@@ -46,5 +46,10 @@ namespace DayTimerRedo.Viewmodels
             string seconds = duration.Seconds > 9 ? $"{duration.Seconds}" : $"0{duration.Seconds}";
             TimeRemainingFormatted = $"{hours}:{minutes}.{seconds}";
         }
+
+        public void DisplayNoEventsRemaining()
+        {
+            TimeRemainingFormatted = "No events remaining";
+        }
     }
 }
