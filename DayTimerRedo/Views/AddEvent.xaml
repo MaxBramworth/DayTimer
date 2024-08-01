@@ -11,16 +11,16 @@
         <ViewModels:AddEventViewModel/>
     </UserControl.DataContext>
     <Grid>
-        <Button x:Name="CreateEvent" Content="Create Event" HorizontalAlignment="Left" Height="26" Margin="19,240,0,0" VerticalAlignment="Top" Width="91"/>
-        <TextBox x:Name="EventName" HorizontalAlignment="Left" Height="20" Margin="19,25,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="146"/>
-        <CheckBox x:Name="OnMonday" Content="Monday" HorizontalAlignment="Left" Height="15" Margin="19,91,0,0" VerticalAlignment="Top" Width="96"/>
-        <CheckBox x:Name="OnTuesday" Content="Tuesday" HorizontalAlignment="Left" Height="14" Margin="19,111,0,0" VerticalAlignment="Top" Width="96"/>
-        <CheckBox x:Name="OnWednesday" Content="Wednesday" HorizontalAlignment="Left" Height="14" Margin="19,130,0,0" VerticalAlignment="Top" Width="96"/>
-        <CheckBox x:Name="OnThursday" Content="Thursday" HorizontalAlignment="Left" Height="14" Margin="19,149,0,0" VerticalAlignment="Top" Width="96"/>
-        <CheckBox x:Name="OnFriday" Content="Friday" HorizontalAlignment="Left" Height="14" Margin="19,168,0,0" VerticalAlignment="Top" Width="96"/>
-        <CheckBox x:Name="OnSaturday" Content="Saturday" HorizontalAlignment="Left" Height="14" Margin="19,187,0,0" VerticalAlignment="Top" Width="96"/>
-        <CheckBox x:Name="OnSunday" Content="Sunday" HorizontalAlignment="Left" Height="14" Margin="19,206,0,0" VerticalAlignment="Top" Width="96"/>
-        <TextBox x:Name="Hour" HorizontalAlignment="Left" Height="20" Margin="19,54,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="68"/>
-        <TextBox x:Name="Minute" HorizontalAlignment="Left" Height="20" Margin="92,54,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="73"/>
+        <Button x:Name="CreateEvent" Content="Create Event" HorizontalAlignment="Left" Height="26" Margin="19,240,0,0" VerticalAlignment="Top" Width="91" IsEnabled="{Binding CanCreateEvent, Mode=Default, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox x:Name="EventName" HorizontalAlignment="Left" Height="20" Margin="19,25,0,0" TextWrapping="Wrap" Text="{Binding EventName}" VerticalAlignment="Top" Width="146"/>
+        <CheckBox x:Name="OnMonday" Content="Monday" HorizontalAlignment="Left" Height="15" Margin="19,91,0,0" VerticalAlignment="Top" Width="96" IsChecked="{Binding IsMon, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <CheckBox x:Name="OnTuesday" Content="Tuesday" HorizontalAlignment="Left" Height="14" Margin="19,111,0,0" VerticalAlignment="Top" Width="96" IsChecked="{Binding IsTue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <CheckBox x:Name="OnWednesday" Content="Wednesday" HorizontalAlignment="Left" Height="14" Margin="19,130,0,0" VerticalAlignment="Top" Width="96" IsChecked="{Binding IsWed, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <CheckBox x:Name="OnThursday" Content="Thursday" HorizontalAlignment="Left" Height="14" Margin="19,149,0,0" VerticalAlignment="Top" Width="96" IsChecked="{Binding IsThu, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <CheckBox x:Name="OnFriday" Content="Friday" HorizontalAlignment="Left" Height="14" Margin="19,168,0,0" VerticalAlignment="Top" Width="96" IsChecked="{Binding IsFri, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <CheckBox x:Name="OnSaturday" Content="Saturday" HorizontalAlignment="Left" Height="14" Margin="19,187,0,0" VerticalAlignment="Top" Width="96" IsChecked="{Binding IsSat, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <CheckBox x:Name="OnSunday" Content="Sunday" HorizontalAlignment="Left" Height="14" Margin="19,206,0,0" VerticalAlignment="Top" Width="96" IsChecked="{Binding IsSun, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox x:Name="Hour" HorizontalAlignment="Left" Height="20" Margin="19,54,0,0" TextWrapping="Wrap" Text="{Binding EventHour, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="68"/>
+        <TextBox x:Name="Minute" HorizontalAlignment="Left" Height="20" Margin="92,54,0,0" TextWrapping="Wrap" Text="{Binding EventMinute, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="73"/>
     </Grid>
 </UserControl>
