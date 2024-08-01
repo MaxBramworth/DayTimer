@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.InteropServices;
-using DayTimerRedo.Viewmodels;
+using DayTimerRedo.ViewModels;
 using DayTimerRedo.Repository;
 
 namespace DayTimerRedo.Models

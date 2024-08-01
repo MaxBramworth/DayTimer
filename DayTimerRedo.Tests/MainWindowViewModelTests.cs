@@ -1,5 +1,5 @@
 using DayTimerRedo;
-using DayTimerRedo.Viewmodels;
+using DayTimerRedo.ViewModels;
 
 namespace DayTimerRedo.Tests
 {
