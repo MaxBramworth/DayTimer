@@ -1,10 +1,12 @@
 ﻿using DayTimerRedo.Models;
+using DayTimerRedo.Views;
 using DayTimerRedo.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace DayTimerRedo.ViewModels
 {
@@ -32,11 +34,23 @@ namespace DayTimerRedo.ViewModels
             }
         }
 
+        private UserControl _addEventPage;
+        public UserControl AddEventPage
+        {
+            get => _addEventPage;
+            set
+            {
+                _addEventPage = value;
+                NotifyPropertyChanged(nameof(AddEventPage));
+            }
+        }
+
         public MainWindowViewModel()
         {
-            MainDayTimer mainDayTimer = new MainDayTimer();
+            MainDayTimer mainDayTimer = new();
             mainDayTimer.ViewModel = this;
             mainDayTimer.BeginLoop();
+            AddEventPage = new AddEvent();
         }
 
         public void FormatTimeRemaining(TimeSpan duration)

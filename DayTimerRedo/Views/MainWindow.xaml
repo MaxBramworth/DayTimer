@@ -11,7 +11,18 @@
         <viewModels:MainWindowViewModel/>
     </Window.DataContext>
     <Grid>
-        <TextBlock HorizontalAlignment="Center" Height="83" Margin="0,124,0,0" TextWrapping="Wrap" Text="{Binding TimeRemainingFormatted}" VerticalAlignment="Top" Width="364" FontSize="70px" TextAlignment="Center"/>
-        <TextBlock HorizontalAlignment="Center" Height="42" Margin="0,217,0,0" TextWrapping="Wrap" Text="{Binding TimeEventTitle}" VerticalAlignment="Top" Width="292" FontSize="25px" TextAlignment="Center"/>
+        <TabControl HorizontalAlignment="Center" Height="414" VerticalAlignment="Center" Width="800">
+            <TabItem Header="Timer">
+                <Grid Background="#FFE5E5E5">
+                    <TextBlock HorizontalAlignment="Center" Height="83" Margin="0,124,0,0" TextWrapping="Wrap" Text="{Binding TimeRemainingFormatted}" VerticalAlignment="Top" Width="364" FontSize="70px" TextAlignment="Center"/>
+                    <TextBlock HorizontalAlignment="Center" Height="42" Margin="0,217,0,0" TextWrapping="Wrap" Text="{Binding TimeEventTitle}" VerticalAlignment="Top" Width="292" FontSize="25px" TextAlignment="Center"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Add Event">
+                <Grid Background="#FFE5E5E5">
+                    <UserControl Content="{Binding AddEventPage}"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>
