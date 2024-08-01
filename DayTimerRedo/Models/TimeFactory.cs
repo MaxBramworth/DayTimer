@@ -4,11 +4,10 @@
     {
         public static MajorTimeEvent CreateMajorTimeEvent(string name, string time, string daysofweek)
         {
-            MajorTimeEvent output = new();
-
-            output.Name = name;
-            output.Time = StringParser.StringToTimeOnly(time);
-            output.Days = StringParser.StringToDayOfWeekArray(daysofweek);
+            MajorTimeEvent output = new(
+                StringParser.StringToTimeOnly(time), 
+                name, 
+                StringParser.StringToDayOfWeekArray(daysofweek));
 
             return output;
         }

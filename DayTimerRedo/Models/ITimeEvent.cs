@@ -27,7 +27,5 @@ namespace DayTimerRedo.Models
             Name = name;
             Days = days;
         }
-
-        public MajorTimeEvent() { }
     }
 }
