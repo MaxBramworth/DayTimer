@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using DayTimerRedo.Repository;
 
 namespace DayTimerRedo.ViewModels
 {
@@ -159,7 +161,14 @@ namespace DayTimerRedo.ViewModels
 
         public AddEventViewModel()
         {
-            
+            CreateEventCommand = new RelayCommand((o) => CreateEvent());
+        }
+
+        public ICommand CreateEventCommand { get; set; }
+
+        public void CreateEvent()
+        {
+            IsMon = true;
         }
     }
 }
