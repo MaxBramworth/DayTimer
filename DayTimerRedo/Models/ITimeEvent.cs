@@ -11,6 +11,7 @@ namespace DayTimerRedo.Models
         TimeOnly Time { get; set; }
         string Name { get; set; }
         DayOfWeek[] Days { get; set; }
+        string AsCSVLine();
     }
 
     public class MajorTimeEvent : ITimeEvent
@@ -26,6 +27,18 @@ namespace DayTimerRedo.Models
             Time = time;
             Name = name;
             Days = days;
+        }
+
+        public string AsCSVLine()
+        {
+            string days = "";
+
+            foreach (DayOfWeek day in Days)
+            {
+                days += $"{day.ToString()[..3]} ";
+            }
+
+            return $"{Name},{Time.Hour}:{Time.Minute}:{Time.Second},{days}";
         }
     }
 }

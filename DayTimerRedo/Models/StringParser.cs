@@ -33,13 +33,13 @@ namespace DayTimerRedo.Models
                     case "Mon":
                         output.Add(DayOfWeek.Monday);
                         break;
-                    case "Tues":
+                    case "Tue":
                         output.Add(DayOfWeek.Tuesday);
                         break;
                     case "Wed":
                         output.Add(DayOfWeek.Wednesday);
                         break;
-                    case "Thur":
+                    case "Thu":
                         output.Add(DayOfWeek.Thursday);
                         break;
                     case "Fri":

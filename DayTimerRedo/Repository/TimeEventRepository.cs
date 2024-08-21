@@ -12,5 +12,10 @@ namespace DayTimerRedo.Repository
             Parser = db;
             TimeEvents = Parser.ReadAllTimeEvents();
         }
+
+        public void RefreshTimeEvents()
+        {
+            TimeEvents = Parser.ReadAllTimeEvents();
+        }
     }
 }

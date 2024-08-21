@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using DayTimerRedo.Models;
 using DayTimerRedo.Repository;
 
 namespace DayTimerRedo.ViewModels
@@ -168,7 +169,17 @@ namespace DayTimerRedo.ViewModels
 
         public void CreateEvent()
         {
-            IsMon = true;
+            string days = "";
+            if (IsMon) days+= "Mon ";
+            if (IsTue) days+= "Tue ";
+            if (IsWed) days+= "Wed ";
+            if (IsThu) days+= "Thu ";
+            if (IsFri) days+= "Fri ";
+            if (IsSat) days+= "Sat ";
+            if (IsSun) days+= "Sun ";
+
+            ITimeEvent timeEvent = TimeFactory.CreateMajorTimeEvent(EventName, _eventTime, days);
+            CSVParser.AddTimeEvent(timeEvent, "DataBase\\TimeEvents.csv");
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace DayTimerRedo.Models
+﻿using System;
+
+namespace DayTimerRedo.Models
 {
     public class TimeFactory
     {
@@ -7,6 +9,16 @@
             MajorTimeEvent output = new(
                 StringParser.StringToTimeOnly(time), 
                 name, 
+                StringParser.StringToDayOfWeekArray(daysofweek));
+
+            return output;
+        }
+
+        public static MajorTimeEvent CreateMajorTimeEvent(string name, TimeOnly time, string daysofweek)
+        {
+            MajorTimeEvent output = new(
+                time,
+                name,
                 StringParser.StringToDayOfWeekArray(daysofweek));
 
             return output;

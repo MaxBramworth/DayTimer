@@ -44,5 +44,31 @@ namespace DayTimerRedo.Repository
 
             return events.ToArray();
         }
+
+        public static bool AddTimeEvent(ITimeEvent timeEvent, string pathway)
+        {
+            bool result = false;
+
+            try
+            {
+                if (File.Exists(pathway))
+                {
+                    using (StreamWriter writer = new StreamWriter(pathway, true))
+                    {
+                        writer.WriteLine(timeEvent.AsCSVLine());
+                        writer.Flush();
+                        writer.Close();
+                    }
+
+                    result = true;
+                }
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+
+            return result;
+        }
     }
 }
