@@ -16,6 +16,7 @@
                 <Grid Background="#FFE5E5E5">
                     <TextBlock HorizontalAlignment="Center" Height="83" Margin="0,124,0,0" TextWrapping="Wrap" Text="{Binding TimeRemainingFormatted}" VerticalAlignment="Top" Width="364" FontSize="70px" TextAlignment="Center"/>
                     <TextBlock HorizontalAlignment="Center" Height="42" Margin="0,217,0,0" TextWrapping="Wrap" Text="{Binding TimeEventTitle}" VerticalAlignment="Top" Width="292" FontSize="25px" TextAlignment="Center"/>
+                    <Button Content="Refresh" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Command="{Binding RefreshTimeEvents}"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Add Event">

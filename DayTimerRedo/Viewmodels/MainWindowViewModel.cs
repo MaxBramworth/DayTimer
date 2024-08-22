@@ -7,11 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace DayTimerRedo.ViewModels
 {
     public class MainWindowViewModel : BaseViewModel
     {
+        private MainDayTimer _timer;
         private string _timeRemainingFormatted = "00:00.00";
         public string TimeRemainingFormatted
         {
@@ -44,13 +46,16 @@ namespace DayTimerRedo.ViewModels
                 NotifyPropertyChanged(nameof(AddEventPage));
             }
         }
+        
+        public ICommand RefreshTimeEvents { get; set; }
 
         public MainWindowViewModel()
         {
-            MainDayTimer mainDayTimer = new();
-            mainDayTimer.ViewModel = this;
-            mainDayTimer.BeginLoop();
+            _timer = new();
+            _timer.ViewModel = this;
+            _timer.BeginLoop();
             AddEventPage = new AddEvent();
+            RefreshTimeEvents = new RelayCommand((o) => RefreshAllTimeEvents());
         }
 
         public void FormatTimeRemaining(TimeSpan duration)
@@ -64,6 +69,12 @@ namespace DayTimerRedo.ViewModels
         public void DisplayNoEventsRemaining()
         {
             TimeRemainingFormatted = "No events remaining";
+        }
+
+        private void RefreshAllTimeEvents()
+        {
+            _timer.Repository.RefreshTimeEvents();
+            _timer.NextTime = _timer.GetNextTimeEvent(_timer.Repository.TimeEvents, DateTime.Now);
         }
     }
 }

@@ -13,10 +13,9 @@ namespace DayTimerRedo.Models
     {
         public MainWindowViewModel ViewModel { get; set; }
         
-        ITimeEvent? _nextTime;
+        public ITimeEvent? NextTime;
 
-        private TimeSpan _timeRemaining => _nextTime.Time - TimeOnly.FromDateTime(DateTime.Now);
-        private TimeSpan _previousTimeRemaining;
+        private TimeSpan _timeRemaining => NextTime.Time - TimeOnly.FromDateTime(DateTime.Now);
 
         public TimeEventRepository Repository;
 
@@ -27,7 +26,7 @@ namespace DayTimerRedo.Models
 
         public async void BeginLoop()
         {
-            _nextTime = GetNextTimeEvent(Repository.TimeEvents, DateTime.Now);
+            NextTime = GetNextTimeEvent(Repository.TimeEvents, DateTime.Now);
 
             int period = 1000;
             Func<Task> loopingUpdate = Update;
@@ -41,15 +40,14 @@ namespace DayTimerRedo.Models
 
         private async Task Update()
         {
-            if (TimeOnly.FromDateTime(DateTime.Now) > _nextTime.Time) // an overflow has happened (the event is now in the past)
+            if (TimeOnly.FromDateTime(DateTime.Now) > NextTime.Time) // an overflow has happened (the event is now in the past)
             {
-                NotificationService.ShowMessage(_nextTime.Name);
-                _nextTime = GetNextTimeEvent(Repository.TimeEvents, DateTime.Now);
+                NotificationService.ShowMessage(NextTime.Name);
+                NextTime = GetNextTimeEvent(Repository.TimeEvents, DateTime.Now);
             }
 
-            if (_nextTime != null)
+            if (NextTime != null)
             {
-                _previousTimeRemaining = _timeRemaining;
                 ViewModel.FormatTimeRemaining(_timeRemaining);
             }
             else
