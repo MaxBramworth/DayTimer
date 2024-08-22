@@ -1,4 +1,5 @@
-﻿using DayTimerRedo.Models;
+﻿using System.Collections.Generic;
+using DayTimerRedo.Models;
 
 namespace DayTimerRedo.Repository
 {
@@ -6,6 +7,6 @@ namespace DayTimerRedo.Repository
     {
         string Pathway { get; set; }
 
-        ITimeEvent[] ReadAllTimeEvents();
+        IEnumerable<ITimeEvent> ReadAllTimeEvents();
     }
 }

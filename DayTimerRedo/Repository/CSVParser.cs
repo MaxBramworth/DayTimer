@@ -27,22 +27,19 @@ namespace DayTimerRedo.Repository
             Pathway = pathway;
         }
 
-        public ITimeEvent[] ReadAllTimeEvents()
+        public IEnumerable<ITimeEvent> ReadAllTimeEvents()
         {
             TextFieldParser parser = new(Pathway);
             parser.SetDelimiters(",");
             parser.CommentTokens = new string[] { "/" };
 
-            List<ITimeEvent> events = new();
             string[]? fields = parser.ReadFields();
 
             while (fields != null)
             {
-                events.Add(TimeFactory.CreateMajorTimeEvent(fields[0], fields[1], fields[2]));
+                yield return TimeFactory.CreateMajorTimeEvent(fields[0], fields[1], fields[2]);
                 fields = parser.ReadFields();
             }
-
-            return events.ToArray();
         }
 
         public static bool AddTimeEvent(ITimeEvent timeEvent, string pathway)

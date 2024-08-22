@@ -46,7 +46,7 @@ namespace DayTimerRedo.Tests
             CSVParser parser = new();
             parser.Pathway = "DataBase\\TimeEvents.csv";
 
-            ITimeEvent[] timeEvents = parser.ReadAllTimeEvents();
+            ITimeEvent[] timeEvents = parser.ReadAllTimeEvents().ToArray();
 
             Assert.AreEqual(3, timeEvents.Length);
         }

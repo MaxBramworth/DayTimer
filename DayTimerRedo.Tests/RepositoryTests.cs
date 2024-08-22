@@ -12,7 +12,7 @@ namespace DayTimerRedo.Tests
             var parser = new CSVParser("DataBase\\TimeEvents.csv");
             var repo = new TimeEventRepository(parser);
 
-            ITimeEvent[] expected = parser.ReadAllTimeEvents();
+            ITimeEvent[] expected = parser.ReadAllTimeEvents().ToArray();
 
             Assert.AreEqual(expected.Length, repo.TimeEvents.Length);
             Assert.AreEqual(expected[0].Name, repo.TimeEvents[0].Name);

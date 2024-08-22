@@ -1,4 +1,5 @@
 ﻿using DayTimerRedo.Models;
+using System.Linq;
 
 namespace DayTimerRedo.Repository
 {
@@ -10,12 +11,12 @@ namespace DayTimerRedo.Repository
         public TimeEventRepository(ITimeEventParser db)
         {
             Parser = db;
-            TimeEvents = Parser.ReadAllTimeEvents();
+            TimeEvents = Parser.ReadAllTimeEvents().ToArray();
         }
 
         public void RefreshTimeEvents()
         {
-            TimeEvents = Parser.ReadAllTimeEvents();
+            TimeEvents = Parser.ReadAllTimeEvents().ToArray();
         }
     }
 }
