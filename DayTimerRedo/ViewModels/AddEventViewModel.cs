@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Diagnostics;
 using System.Windows.Input;
 using DayTimerRedo.Models;
 using DayTimerRedo.Repository;
@@ -163,9 +160,11 @@ namespace DayTimerRedo.ViewModels
         public AddEventViewModel()
         {
             CreateEventCommand = new RelayCommand((o) => CreateEvent());
+            OpenSourceFileCommand = new RelayCommand((o) => OpenSourceFile());
         }
 
         public ICommand CreateEventCommand { get; set; }
+        public ICommand OpenSourceFileCommand { get; set; }
 
         public void CreateEvent()
         {
@@ -180,6 +179,15 @@ namespace DayTimerRedo.ViewModels
 
             ITimeEvent timeEvent = TimeFactory.CreateMajorTimeEvent(EventName, _eventTime, days);
             CSVParser.AddTimeEvent(timeEvent, "DataBase\\TimeEvents.csv");
+        }
+
+        public void OpenSourceFile()
+        {
+            using Process fileopener = new Process();
+
+            fileopener.StartInfo.FileName = "explorer";
+            fileopener.StartInfo.Arguments = "\"" + "DataBase\\TimeEvents.csv" + "\"";
+            fileopener.Start();
         }
     }
 }
