@@ -35,7 +35,7 @@ namespace DayTimerRedo.Repository
 
             string[]? fields = parser.ReadFields();
 
-            while (fields != null)
+            while (fields != null && !string.IsNullOrWhiteSpace(fields[0]))
             {
                 yield return TimeFactory.CreateMajorTimeEvent(fields[0], fields[1], fields[2]);
                 fields = parser.ReadFields();
